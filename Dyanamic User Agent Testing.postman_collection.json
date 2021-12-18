@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "288548e9-9509-4e54-9504-afec23de1ac0",
+		"name": "Dyanamic User Agent Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "JPEG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// java-scripts //chai library //english lang\r",
+							"// order of execution in postman : API Request --> API Response --> Tests\r",
+							"\r",
+							"pm.test(\"Verify if 200 is the response code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if OK is the response message\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if response body is present\", function () {\r",
+							"    pm.response.to.have.body\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if Content-Type response header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"image/jpeg\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if Connection response header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "{{$randomUserAgent}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://httpbin.org/image/jpeg",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"image",
+						"jpeg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PNG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// java-scripts //chai library //english lang\r",
+							"// order of execution in postman : API Request --> API Response --> Tests\r",
+							"\r",
+							"pm.test(\"Verify if 200 is the response code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if OK is the response message\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if response body is present\", function () {\r",
+							"    pm.response.to.have.body\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify if Connection response header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "{{$randomUserAgent}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://httpbin.org/image/png",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"image",
+						"png"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

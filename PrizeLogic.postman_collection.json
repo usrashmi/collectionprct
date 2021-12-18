@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "fe778505-923b-4a89-9748-8dc82c22f03e",
+		"name": "PrizeLogic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication-get token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"myExtractedResponseBody=JSON.parse(responseBody)\r",
+							"\r",
+							"myextractedtoken = myExtractedResponseBody.access_token\r",
+							"\r",
+							"pm.globals.set(\"globletoken\",myextractedtoken);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "response_type",
+							"value": "token",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "180a7fa663af4193b089a02ab8fcc5fe",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "860be1235d8443eb803ca844b97629cdd601f6b4cf984caa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://pl013846-itg-myblu-loyalty.prizelogicqa.com/auth/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"pl013846-itg-myblu-loyalty",
+						"prizelogicqa",
+						"com"
+					],
+					"path": [
+						"auth",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "Generated from a curl request: \ncurl --location -g --request POST 'https://pl013846-itg-myblu-loyalty.prizelogicqa.com/auth/oauth2/token' \n--header 'Cache-Control: no-cache' \n--header 'Content-Type: application/x-www-form-urlencoded' \n--data-urlencode 'grant_type=client_credentials' \n--data-urlencode 'response_type=token' \n--data-urlencode 'client_id=180a7fa663af4193b089a02ab8fcc5fe' \n--data-urlencode 'client_secret=860be1235d8443eb803ca844b97629cdd601f6b4cf984caa'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{globletoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Lif\",\r\n  \"last_name\": \"string\",\r\n  \"date_of_birth\": \"2000-02-16T16:05:19.876Z\", \r\n  \"email_address\": \"lifcytest2@yopmail.com\",\r\n  \"third_party_id\": \"222222111\",  \r\n  \"gender_id\": 0, \r\n  \"email_is_verified\": true, \r\n  \"street_address_1\": \"string\",\r\n  \"street_address_2\": \"string\",\r\n  \"postal_code\": \"string\",\r\n  \"city\": \"string\",\r\n  \"state\": \"NY\",\r\n  \"country_code\": \"US\",\r\n  \"refferer_id\": \"string\",\r\n  \"refferal_source\": \"string\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/createuser",
+					"protocol": "https",
+					"host": [
+						"pl013846-itg-myblu-loyalty",
+						"prizelogicqa",
+						"com"
+					],
+					"path": [
+						"api",
+						"custom",
+						"createuser"
+					]
+				},
+				"description": "Generated from a curl request: \ncurl --location -g --request POST 'https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/createuser' \n--header 'Cache-Control: no-cache' \n--header 'Content-Type: application/json' \n--header 'Authorization: bearer UVdRYR6TLdZgjK04LU8X-UNDSGSU8f0gSegSug89hDwFeCWtFxuG1tRK7i6EN6CE24zBlEVRhV3KkrtHR33i3g7-rchGLt0QmW0SOe7g3JABvj_ghQJg-jcotVQD87QM35Gxo33vDAcyCuJCpppyYeH4IaQvgOvveNOMOfZsKb4kWCAG-q8I2JwU9-i47kK9jbVH-7qUuBIwEOWbhvxSEKKTrNmk8XGkvkheI3zaPked9uofh_W8iI1Z9KTiv2xtLoqIF4HRDwnNxECtjl8YP-wenwv8bEmmBxpCzfS5EJMqZf07zTJfK2kMYcXhdcIdgBQ_LYdEHr7CNMVb9ncIPZpQCvM' \n--data-raw '{\n  \\\"first_name\\\": \\\"lif\\\",\n  \\\"last_name\\\": \\\"test\\\",\n  \\\"date_of_birth\\\": \\\"2000-02-16T16:05:19.876Z\\\", \n  \\\"email_address\\\": \\\"lifcytest1@yopmail.com\\\",\n  \\\"third_party_id\\\": \\\"1\\\",\n  \\\"country_code\\\": \\\"US\\\"\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{globletoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Lif\",\r\n  \"middle_name\": \"string\",\r\n  \"last_name\": \"string\",\r\n  \"email_address\": \"lifcytest2@yopmail.com\",\r\n  \"third_party_id\": \"2\",  \r\n  \"gender_id\": 1,\r\n  \"street_address_1\": \"new street\",\r\n  \"street_address_2\": \"\",\r\n  \"postal_code\": \"85213\",\r\n  \"city\": \"Mesa\",\r\n  \"state\": \"AZ\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/updateuser?consumerId=2",
+					"protocol": "https",
+					"host": [
+						"pl013846-itg-myblu-loyalty",
+						"prizelogicqa",
+						"com"
+					],
+					"path": [
+						"api",
+						"custom",
+						"updateuser"
+					],
+					"query": [
+						{
+							"key": "consumerId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl --location -g --request POST 'https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/updateuser?consumerId=12345656' \n--header 'Cache-Control: no-cache' \n--header 'Content-Type: application/json' \n--header 'Authorization: UVdRYR6TLdZgjK04LU8X-UNDSGSU8f0gSegSug89hDwFeCWtFxuG1tRK7i6EN6CE24zBlEVRhV3KkrtHR33i3g7-rchGLt0QmW0SOe7g3JABvj_ghQJg-jcotVQD87QM35Gxo33vDAcyCuJCpppyYeH4IaQvgOvveNOMOfZsKb4kWCAG-q8I2JwU9-i47kK9jbVH-7qUuBIwEOWbhvxSEKKTrNmk8XGkvkheI3zaPked9uofh_W8iI1Z9KTiv2xtLoqIF4HRDwnNxECtjl8YP-wenwv8bEmmBxpCzfS5EJMqZf07zTJfK2kMYcXhdcIdgBQ_LYdEHr7CNMVb9ncIPZpQCvM' \n--data-raw '{\n  \\\"first_name\\\": \\\"string\\\",\n  \\\"middle_name\\\": \\\"string\\\",\n  \\\"last_name\\\": \\\"string\\\",  \n  \\\"email_address\\\": \\\"string\\\",\n  \\\"username\\\": \\\"string\\\",   not needed\n  \\\"third_party_id\\\": \\\"string\\\",  required, should match consumerId\n  \\\"gender_id\\\": 1,\n  \\\"street_address_1\\\": \\\"new street\\\",  new, I imagine address update would be the reasons for this call\n  \\\"street_address_2\\\": \\\"\\\",\n  \\\"postal_code\\\": \\\"85213\\\",\n  \\\"city\\\": \\\"Mesa\\\",\n  \\\"state\\\": \\\"AZ\\\"\n}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{globletoken}}"
+					}
+				],
+				"url": {
+					"raw": "https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/getuser?consumerId=2",
+					"protocol": "https",
+					"host": [
+						"pl013846-itg-myblu-loyalty",
+						"prizelogicqa",
+						"com"
+					],
+					"path": [
+						"api",
+						"custom",
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "consumerId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl --location -g --request GET 'https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/getuser?consumerId=12345656' \n--header 'Cache-Control: no-cache' \n--header 'Content-Type: application/json' \n--header 'Authorization: {{basic_token_type}} {{basic_access_token}}' \n--data-raw '{\n  \\\"first_name\\\": \\\"Test\\\",\n  \\\"middle_name\\\": \\\"Bla\\\",\n  \\\"last_name\\\": \\\"Testowanie\\\",  \n  \\\"email_address\\\": \\\"yada@example.org\\\",\n  \\\"username\\\": \\\"string\\\",\n  \\\"third_party_id\\\": \\\"12345656\\\",\n  \\\"gender_id\\\": 1,\n  \\\"street_address_1\\\": \\\"new street\\\",\n  \\\"street_address_2\\\": \\\"\\\",\n  \\\"postal_code\\\": \\\"85213\\\",\n  \\\"city\\\": \\\"Mesa\\\",\n  \\\"state\\\": \\\"AZ\\\"\n}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "reward",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{globletoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"num_points\": 0,\r\n  \"activity_id\": 0,\r\n  \"extra_data\": {\r\n    \"order_number\": \"0\",\r\n    \"subtotal_cent_amount\": 0\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/reward?consumerId=2",
+					"protocol": "https",
+					"host": [
+						"pl013846-itg-myblu-loyalty",
+						"prizelogicqa",
+						"com"
+					],
+					"path": [
+						"api",
+						"custom",
+						"reward"
+					],
+					"query": [
+						{
+							"key": "consumerId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl --location -g --request GET 'https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/getuser?consumerId=12345656' \n--header 'Cache-Control: no-cache' \n--header 'Content-Type: application/json' \n--header 'Authorization: {{basic_token_type}} {{basic_access_token}}' \n--data-raw '{\n  \\\"first_name\\\": \\\"Test\\\",\n  \\\"middle_name\\\": \\\"Bla\\\",\n  \\\"last_name\\\": \\\"Testowanie\\\",  \n  \\\"email_address\\\": \\\"yada@example.org\\\",\n  \\\"username\\\": \\\"string\\\",\n  \\\"third_party_id\\\": \\\"12345656\\\",\n  \\\"gender_id\\\": 1,\n  \\\"street_address_1\\\": \\\"new street\\\",\n  \\\"street_address_2\\\": \\\"\\\",\n  \\\"postal_code\\\": \\\"85213\\\",\n  \\\"city\\\": \\\"Mesa\\\",\n  \\\"state\\\": \\\"AZ\\\"\n}'\n"
+			},
+			"response": []
+		},
+		{
+			"name": "redeem",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{globletoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"reward_id\": 0,\r\n  \"quantity\": 160,\r\n  \"transaction_id\": \"1\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/redeem?consumerId=2",
+					"protocol": "https",
+					"host": [
+						"pl013846-itg-myblu-loyalty",
+						"prizelogicqa",
+						"com"
+					],
+					"path": [
+						"api",
+						"custom",
+						"redeem"
+					],
+					"query": [
+						{
+							"key": "consumerId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Generated from a curl request: \ncurl --location -g --request GET 'https://pl013846-itg-myblu-loyalty.prizelogicqa.com/api/custom/getuser?consumerId=12345656' \n--header 'Cache-Control: no-cache' \n--header 'Content-Type: application/json' \n--header 'Authorization: {{basic_token_type}} {{basic_access_token}}' \n--data-raw '{\n  \\\"first_name\\\": \\\"Test\\\",\n  \\\"middle_name\\\": \\\"Bla\\\",\n  \\\"last_name\\\": \\\"Testowanie\\\",  \n  \\\"email_address\\\": \\\"yada@example.org\\\",\n  \\\"username\\\": \\\"string\\\",\n  \\\"third_party_id\\\": \\\"12345656\\\",\n  \\\"gender_id\\\": 1,\n  \\\"street_address_1\\\": \\\"new street\\\",\n  \\\"street_address_2\\\": \\\"\\\",\n  \\\"postal_code\\\": \\\"85213\\\",\n  \\\"city\\\": \\\"Mesa\\\",\n  \\\"state\\\": \\\"AZ\\\"\n}'\n"
+			},
+			"response": []
+		}
+	]
+}

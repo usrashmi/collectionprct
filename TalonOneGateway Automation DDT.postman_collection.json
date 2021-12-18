@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "d13769d3-d6bc-47f0-9363-89dca63e4fd8",
+		"name": "TalonOneGateway Automation DDT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Advocate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "TALONONEIGW",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "TxfDKb48jXALX8sFreWZ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MarketId\": \"{{marketname}}\",\r\n  \"IntegrationId\": \"{{integrationid}}\",\r\n  \"Name\": \"{{name}}\",\r\n  \"Email\": \"{{email}}\",\r\n  \"Phone\": \"{{phone}}\",\r\n  \"BirthDate\": \"{{birthdate}}\",\r\n  \"SignupDate\": \"{{signupdate}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fntm-k8s-test.westeurope.cloudapp.azure.com/acceleration/eu/api/talonone-gateway/create-advocate",
+					"protocol": "https",
+					"host": [
+						"fntm-k8s-test",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"acceleration",
+						"eu",
+						"api",
+						"talonone-gateway",
+						"create-advocate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "TxfDKb48jXALX8sFreWZ",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "TALONONEIGW",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MarketId\": \"{{marketname}}\",\r\n  \"IntegrationId\": \"{{integrationid}}\",\r\n  \"Email\": \"{{updateemail}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fntm-k8s-test.westeurope.cloudapp.azure.com/acceleration/eu/api/talonone-gateway/update-email",
+					"protocol": "https",
+					"host": [
+						"fntm-k8s-test",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"acceleration",
+						"eu",
+						"api",
+						"talonone-gateway",
+						"update-email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Phone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "TALONONEIGW",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "TxfDKb48jXALX8sFreWZ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MarketId\": \"{{marketname}}\",\r\n  \"IntegrationId\": \"{{integrationid}}\",\r\n  \"Phone\": \"{{updatephone}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fntm-k8s-test.westeurope.cloudapp.azure.com/acceleration/eu/api/talonone-gateway/update-phone",
+					"protocol": "https",
+					"host": [
+						"fntm-k8s-test",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"acceleration",
+						"eu",
+						"api",
+						"talonone-gateway",
+						"update-phone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Engagement Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "TALONONEIGW",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "TxfDKb48jXALX8sFreWZ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MarketId\": \"{{marketname}}\",\r\n  \"IntegrationId\": \"{{integrationid}}\",\r\n  \"EngagementStatus\": \"SurveyCompleted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fntm-k8s-test.westeurope.cloudapp.azure.com/acceleration/eu/api/talonone-gateway/update-engagement-status",
+					"protocol": "https",
+					"host": [
+						"fntm-k8s-test",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"acceleration",
+						"eu",
+						"api",
+						"talonone-gateway",
+						"update-engagement-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "TALONONEIGW",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "TxfDKb48jXALX8sFreWZ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MarketId\": \"{{marketname}}\",\r\n  \"IntegrationId\": \"{{integrationid}}\",\r\n  \"CheckoutTotal\": \"500\",\r\n  \"OrderNumber\":\"Order1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fntm-k8s-test.westeurope.cloudapp.azure.com/acceleration/eu/api/talonone-gateway/purchase-products",
+					"protocol": "https",
+					"host": [
+						"fntm-k8s-test",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"acceleration",
+						"eu",
+						"api",
+						"talonone-gateway",
+						"purchase-products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Advocate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify the Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "TALONONEIGW",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "TxfDKb48jXALX8sFreWZ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fntm-k8s-test.westeurope.cloudapp.azure.com/acceleration/eu/api/talonone-gateway/get-advocate/Pulze_CZ/{{integrationid}}",
+					"protocol": "https",
+					"host": [
+						"fntm-k8s-test",
+						"westeurope",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"acceleration",
+						"eu",
+						"api",
+						"talonone-gateway",
+						"get-advocate",
+						"Pulze_CZ",
+						"{{integrationid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
